@@ -43,7 +43,8 @@ def main():
     model = Model(inputs=x, outputs=o)
     model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
     model.fit(x_train, y_train, batch_size=256, epochs=10)
-    
+    score = model.evaluate(x_test, y_test, batch_size=128)
+    print(score)
 
 
 if __name__ == '__main__':

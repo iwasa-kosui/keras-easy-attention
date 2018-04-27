@@ -1,10 +1,11 @@
+from keras import backend as K
 from keras.layers import Input, Dense, Embedding, GRU, TimeDistributed, Concatenate, RepeatVector, Permute, Lambda, Bidirectional, Multiply
 from keras.models import Model
 
-def AttentionGRU(input_shape, gru_dim, return_sequences=False, single=False):
+def AttentionGRU(input_shape, gru_dim=256, dropout=0.5, return_sequences=False, single=False):
     batch_size, time_steps, embedding_dim = input_shape
     i = Input(shape=(time_steps, embedding_dim, ), dtype='float32')
-    g = Bidirectional(GRU(gru_dim, dropout=0.5, return_sequences=True))(i)
+    g = Bidirectional(GRU(gru_dim, dropout=dropout, return_sequences=True))(i)
     a = Permute((2, 1))(g)
     a = Dense(time_steps, activation='softmax')(a)
     if single:

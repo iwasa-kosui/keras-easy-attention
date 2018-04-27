@@ -3,7 +3,7 @@ With this project, you can easily use the GRU attention model on Keras.
 
 # Example
 
-Document Classfication Example
+Document Classfication Example   
 More at https://github.com/KilledByNLP/keras-easy-attention/blob/master/train.py
 
 ```python

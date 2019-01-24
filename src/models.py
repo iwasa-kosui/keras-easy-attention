@@ -3,7 +3,7 @@ from keras.layers import Input, Dense, Embedding, GRU, TimeDistributed, Concaten
 from keras.models import Model
 
 def AttentionGRU(input_shape, gru_dim=256, dropout=0.5, return_sequences=False):
-    batch_size, time_steps, embedding_dim = input_shape
+    time_steps, embedding_dim = input_shape
     i = Input(shape=(time_steps, embedding_dim, ), dtype='float32')
     g = Bidirectional(GRU(gru_dim, dropout=dropout, return_sequences=True))(i)
     a = Permute((2, 1))(g)
